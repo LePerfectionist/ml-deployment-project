@@ -1,7 +1,8 @@
 import pickle
 
+MODEL_PATH = "api/app/artifacts/model.pkl"
 def load_model():
-    with open("model.pkl", "rb") as f:
+    with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
 
 def predict_one(input_dict):

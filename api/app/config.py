@@ -1,7 +1,6 @@
 from pydantic import BaseSettings
 
 class Settings(BaseSettings):
-    model_path: str = "model.pkl"
-    log_level: str = "info"
+    model_path: str = "api/app/artifacts/model.pkl"
 
 settings = Settings()
