@@ -4,7 +4,7 @@ from api.app.schemas.mushroom_output import MushroomOutput
 from mushroom_model.predict import load_model, predict_one
 
 from api.app.config import settings
-load_model(settings.model_path)
+model, encoders = load_model(settings.model_path)
 
 
 router = APIRouter()
@@ -15,5 +15,5 @@ def health():
 
 @router.post("/predict", response_model=MushroomOutput)
 def predict(input: MushroomInput):
-    pred = predict_one(input.model_dump(by_alias=True))
+    pred = predict_one(input.model_dump(by_alias=True), model, encoders)
     return {"prediction": "Edible" if pred == "e" else "Poisonous"}
